@@ -12,4 +12,8 @@ resource "github_repository" "repository" {
   has_projects           = true
   has_issues             = true
   has_wiki               = true
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
