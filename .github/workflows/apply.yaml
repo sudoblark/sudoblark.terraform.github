@@ -4,10 +4,8 @@ env:
   AWS_ACCESS_KEY_ID: ${{ secrets.SUDOBLARK_AWS_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.SUDOBLARK_AWS_ACCESS_KEY_VALUE }}
   AWS_DEFAULT_REGION: eu-west-2
-  # Automatically generated token unique to this repo per workflow execution
-  REPO_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   # Explicitly provided token in ORG to access entire organisation
-  ORG_GITHUB_TOKEN: ${{ secrets.SUDOBLARK_GITHUB_TOKEN }}
+  GITHUB_TOKEN: ${{ secrets.SUDOBLARK_GITHUB_TOKEN }}
 
 on:
   workflow_dispatch:
@@ -16,6 +14,10 @@ on:
   push:
     branches:
       - main
+    paths-ignore:
+      - '.github/**'
+      - 'LICENSE.txt
+
 
 permissions:
   contents: read
@@ -28,12 +30,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        env:
-          GITHUB_TOKEN: ${{ env.REPO_GITHUB_TOKEN }}
 
       - name: terraform apply
         uses: dflook/terraform-apply@v1
-        env:
-          GITHUB_TOKEN: ${{ env.ORG_GITHUB_TOKEN }}
         with:
           auto_approve: true
