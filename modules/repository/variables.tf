@@ -1,19 +1,17 @@
-# Repository variables
-
 variable "name" {
   description = "Name of the repository to be created."
-  type = string
+  type        = string
 }
 
 variable "description" {
   description = "Description we should give to the repository"
-  type = string
+  type        = string
 }
 
 variable "archived" {
   description = "If the repository is archived or not."
-  type = bool
-  default = false
+  type        = bool
+  default     = false
 }
 
 variable "topics" {
@@ -23,9 +21,9 @@ variable "topics" {
 }
 
 variable "visibility" {
-  default = "private"
+  default     = "private"
   description = "Determines repository visibility"
-  type = string
+  type        = string
   validation {
     condition = anytrue([
       var.visibility == "private",
@@ -33,4 +31,16 @@ variable "visibility" {
     ])
     error_message = "Visibility must be either 'private' or 'public'"
   }
+}
+
+variable "open_source" {
+  description = "If the repository should be licensed as open source or not."
+  type        = bool
+  default     = false
+}
+
+variable "codeowners" {
+  description = "Additional codeowners for the repository"
+  type        = list(string)
+  default     = null
 }
