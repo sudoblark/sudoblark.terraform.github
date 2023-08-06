@@ -44,8 +44,6 @@ This repo acts as the single source of truth for the Sudoblark GitHub Organisati
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 ### Built With
 
 * [terraform](https://www.terraform.io) version 1.2.7
