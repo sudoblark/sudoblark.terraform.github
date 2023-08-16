@@ -7,6 +7,7 @@ module "repositories" {
   visibility  = try(each.value.visibility, "private")
   archived    = try(each.value.archived, false)
   codeowners  = try(each.value.codeowners, null)
+  open_source = try(each.value.open_source, false)
   providers = {
     github = github
   }

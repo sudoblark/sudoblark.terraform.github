@@ -6,7 +6,9 @@ locals {
     },
     "monsternames.open-api" : {
       description : "OpenAPI definition for the monsternames RESTAPI",
-      topics : ["open-api"]
+      topics : ["open-api"],
+      open_source: true,
+      visibility = "public"
     },
     "terraform.aws" : {
       description : "Terraform setup for Sudoblark AWS",
