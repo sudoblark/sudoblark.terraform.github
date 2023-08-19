@@ -17,6 +17,10 @@ locals {
     "aws.lambda.dynamoapi" : {
       description : "A generic Python lambda which supports CRUD operations on top of DynamoDB",
       topics : ["aws"]
+    },
+    "sudoblark.nginx": {
+      description: "The central web tier for sudoblark.com"
+      topics: ["nginx", "docker"]
     }
   }
 }
