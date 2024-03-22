@@ -10,17 +10,13 @@ locals {
       open_source: true,
       visibility = "public"
     },
+    "monsternames.api" : {
+      description: "Lambda container for the monsternames-api RESTAPI backend.",
+      topics: ['aws', 'python', 'docker']
+    }
     "terraform.aws" : {
       description : "Terraform setup for Sudoblark AWS",
       topics : ["terraform", "aws", "iac"]
     },
-    "aws.lambda.dynamoapi" : {
-      description : "A generic Python lambda which supports CRUD operations on top of DynamoDB",
-      topics : ["aws"]
-    },
-    "sudoblark.nginx": {
-      description: "The central web tier for sudoblark.com"
-      topics: ["nginx", "docker"]
-    }
   }
 }
