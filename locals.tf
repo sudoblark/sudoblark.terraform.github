@@ -12,7 +12,8 @@ locals {
     },
     "monsternames.api" : {
       description: "Lambda container for the monsternames-api RESTAPI backend.",
-      topics: ["aws", "python", "docker"]
+      topics: ["aws", "python", "docker"],
+      open_source: true,
     }
     "terraform.aws" : {
       description : "Terraform setup for Sudoblark AWS",
