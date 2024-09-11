@@ -96,6 +96,8 @@ Below are setup instructions to interact with this repo on MacOS.
 1. Initialise terraform, everything is prod:
 ```sh
 tfenv use 1.2.7
+export AWS_DEFAULT_PROFILE=sudoblark
+export GITHUB_TOKEN=<token>
 terraform init
 ```
 2. Then plan as expected:
