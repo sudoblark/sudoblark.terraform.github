@@ -56,7 +56,7 @@ resource "github_repository_file" "gitignore" {
 resource "github_repository_file" "precommit" {
   repository          = github_repository.repository.name
   branch              = data.github_branch.main.branch
-  file                = ".pre-commit.yaml"
+  file                = ".pre-commit-config.yaml"
   content             = <<EOT
 %{if can(regex("terraform.module", github_repository.repository.name))}
 ${file("${path.module}/template_files/terraform_module_pre_commit.yaml")}
