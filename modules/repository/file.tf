@@ -58,15 +58,13 @@ resource "github_repository_file" "precommit" {
   branch              = data.github_branch.main.branch
   file                = ".pre-commit.yaml"
   content             = <<EOT
-  %{if can(regex("terraform.module", github_repository.repository.name))}
-  ${file("${path.module}/template_files/terraform_module_pre_commit.yaml")}
-  %{endif~}
+%{if can(regex("terraform.module", github_repository.repository.name))}
+${file("${path.module}/template_files/terraform_module_pre_commit.yaml")}
+%{endif~}
 
-  %{if can(regex("terraform", github_repository.repository.name)) && !(can(regex("terraform.module", github_repository.repository.name)))}
-  ${file("${path.module}/template_files/terraform_pre_commit.yaml")}
-  %{endif~}
-
-
+%{if can(regex("terraform", github_repository.repository.name)) && !(can(regex("terraform.module", github_repository.repository.name)))}
+${file("${path.module}/template_files/terraform_pre_commit.yaml")}
+%{endif~}
   EOT
   commit_message      = ".pre-commit.yaml - managed by sudoblark.terraform.github"
   overwrite_on_create = true
