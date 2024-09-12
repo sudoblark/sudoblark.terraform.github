@@ -66,6 +66,26 @@ ${file("${path.module}/template_files/terraform_module_pre_commit.yaml")}
 ${file("${path.module}/template_files/terraform_pre_commit.yaml")}
 %{endif~}
   EOT
-  commit_message      = ".pre-commit.yaml - managed by sudoblark.terraform.github"
+  commit_message      = ".pre-commit-config.yaml - managed by sudoblark.terraform.github"
   overwrite_on_create = true
+}
+
+resource "github_repository_file" "commit-to-pr" {
+  repository          = github_repository.repository.name
+  branch              = data.github_branch.main.branch
+  file                = ".github/workflows/commit-to-pr.yaml"
+  content             = <<EOT
+%{if can(regex("terraform", github_repository.repository.name))}
+${file("${path.module}/template_files/terraform_commit_to_pr_template.yaml")}
+%{endif~}
+  EOT
+  commit_message      = "commit-to-pr.yaml - managed by sudoblark.terraform.github"
+  overwrite_on_create = true
+
+  lifecycle {
+    ignore_changes = [
+      # We only want to bootstrap the file, not manage it wholesale
+      content
+    ]
+  }
 }
