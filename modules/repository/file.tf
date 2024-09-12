@@ -1,6 +1,7 @@
 locals {
-  commit_to_pr_template = anytrue(
+  commit_to_pr_template = anytrue([
     can(regex("terraform.module", github_repository.repository.name)),
+    ]
   )
 
 }
@@ -79,7 +80,7 @@ ${file("${path.module}/template_files/terraform_pre_commit.yaml")}
 
 resource "github_repository_file" "commit-to-pr" {
   # Only populate the template if we have a templated file to populate.
-  count = local.commit_to_pr_template ? 1 : 0
+  count               = local.commit_to_pr_template == true ? 1 : 0
   repository          = github_repository.repository.name
   branch              = data.github_branch.main.branch
   file                = ".github/workflows/commit-to-pr.yaml"
