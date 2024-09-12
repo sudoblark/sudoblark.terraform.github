@@ -1,6 +1,6 @@
 locals {
   commit_to_pr_template = anytrue([
-    can(regex("terraform.module", github_repository.repository.name)),
+    can(regex("terraform", github_repository.repository.name)),
     ]
   )
 
