@@ -17,7 +17,10 @@ permissions:
 
 jobs:
   validation:
-    name: Terraform validate
+    strategy:
+      matrix:
+        folder: ["./"]
+    name: Terraform validate for ${{ matrix.folder }}
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
@@ -26,9 +29,19 @@ jobs:
 
       - name: terraform validate
         uses: dflook/terraform-validate@v1
+        with:
+          path: ${{ matrix.folder }}
+
+        env:
+          GITHUB_TOKEN: ${{ env.ORG_GITHUB_TOKEN }}
+          TERRAFORM_HTTP_CREDENTIALS: |
+            github.com/sudoblark=sudoblark-bot:${{ env.ORG_GITHUB_TOKEN }}
 
   linting:
-    name: Terraform lint
+    strategy:
+      matrix:
+        folder: ["./"]
+    name: Terraform lint for ${{ matrix.folder }}
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
@@ -40,9 +53,13 @@ jobs:
 
       - name: Run tflint
         run: tflint
+        working-directory: ${{ matrix.folder }}
 
   plan:
-    name: Terraform plan
+    strategy:
+      matrix:
+        folder: ["./"]
+    name: Terraform plan for ${{ matrix.folder }}
     runs-on: ubuntu-20.04
     needs: [validation, linting]
     steps:
@@ -55,5 +72,9 @@ jobs:
 
       - name: terraform plan
         uses: dflook/terraform-plan@v1
+        with:
+          path: ${{ matrix.folder }}
         env:
           GITHUB_TOKEN: ${{ env.ORG_GITHUB_TOKEN }}
+          TERRAFORM_HTTP_CREDENTIALS: |
+            github.com/sudoblark=sudoblark-bot:${{ env.ORG_GITHUB_TOKEN }}
