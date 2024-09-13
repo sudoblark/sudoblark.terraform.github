@@ -1,3 +1,4 @@
+
 name: Terraform checks on pull request
 
 env:
@@ -19,7 +20,7 @@ jobs:
   validation:
     strategy:
       matrix:
-        folder: ["./"]
+        folder: ["add", "folders", "here"]
     name: Terraform validate for ${{ matrix.folder }}
     runs-on: ubuntu-20.04
     steps:
@@ -40,7 +41,7 @@ jobs:
   linting:
     strategy:
       matrix:
-        folder: ["./"]
+        folder: ["add", "folders", "here"]
     name: Terraform lint for ${{ matrix.folder }}
     runs-on: ubuntu-20.04
     steps:
@@ -58,7 +59,7 @@ jobs:
   plan:
     strategy:
       matrix:
-        folder: ["./"]
+        folder: ["add", "folders", "here"]
     name: Terraform plan for ${{ matrix.folder }}
     runs-on: ubuntu-20.04
     needs: [validation, linting]
