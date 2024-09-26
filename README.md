@@ -1,3 +1,18 @@
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/sudoblark/sudoblark.terraform.github">
+    <img src="docs/logo.png" alt="Logo" width="80" height="80">
+  </a>
+
+<h3 align="center">sudoblark.terraform.github</h3>
+
+  <p align="center">
+    Managed GitHub with GitHub!
+  </p>
+</div>
+
+
 # sudoblark.terraform.github
 Terraform setup for Sudoblark GitHub - repo managed by sudoblark.terraform.github.
 
