@@ -99,3 +99,20 @@ ${file("${path.module}/template_files/terraform_commit_to_pr_template.yaml")}
     ]
   }
 }
+
+resource "github_repository_file" "pull-request-template" {
+  repository          = github_repository.repository.name
+  branch              = data.github_branch.main.branch
+  file                = ".github/pull_request_template.md"
+  content             = <<EOT
+${file("${path.module}/template_files/pull_request_template.md")}
+%{if can(regex("python", github_repository.repository.name))}
+${file("${path.module}/template_files/python_pull_request_checklist.md")}
+%{endif~}
+%{if can(regex("terraform", github_repository.repository.name))}
+${file("${path.module}/template_files/terraform_pull_request_checklist.md")}
+%{endif~}
+  EOT
+  commit_message      = "pull_request_template.md - managed by sudoblark.terraform.github"
+  overwrite_on_create = true
+}
