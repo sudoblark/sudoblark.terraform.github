@@ -85,6 +85,7 @@ locals {
     local.core_platform,
     local.terraform_modules,
     local.monsternames,
-    local.python
+    local.python,
+    local.demo_repositories
   )
 }
