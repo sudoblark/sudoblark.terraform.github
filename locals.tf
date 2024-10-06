@@ -78,6 +78,14 @@ locals {
       description : "Terraform module to create N number of state machines with custom IAM policies..",
       topics : ["terraform", "aws", "iac", "module"]
     },
+    "sudoblark.terraform.module.aws.s3_bucket" : {
+      description : "Terraform module to create N number of S3 buckets.",
+      topics : ["terraform", "aws", "iac", "module"]
+    },
+    "sudoblark.terraform.module.aws.s3_bucket_notifications" : {
+      description : "Terraform module create N number of notifications on a given S3 bucket.",
+      topics : ["terraform", "aws", "iac", "module"]
+    },
   }
 
 
