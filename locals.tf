@@ -19,6 +19,7 @@ locals {
       description : "Terraform setup for Sudoblark GitHub",
       topics : ["terraform", "github", "iac"],
       visibility : "public"
+      open_source : true
     },
     "sudoblark.terraform.aws" : {
       description : "Terraform setup for Sudoblark AWS",
