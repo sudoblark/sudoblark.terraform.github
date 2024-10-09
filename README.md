@@ -26,7 +26,9 @@ structure which is then used to instantiate our module many times in `repositori
 
 In this manner, we may define repositories as dictionaries, combining them into a dictionary of dictionaries,
 in order to create as many repos as we like via complex data structures. Whilst still separating concerns
-via the individual project.tf files.
+via the individual project.tf files or higher-level dictionary keys.
+
+It's counter may be considered to be [sudoblark.terraform.modularised-demo](https://github.com/sudoblark/sudoblark.terraform.modularised-demo) , which is an example micro-repo using modularised components to fulfill a use-case
 
 ## Developer documentation
 The below documentation is intended to assist a developer with interacting with the Terraform code in order to add,
