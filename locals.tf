@@ -3,8 +3,15 @@ locals {
     "sudoblark.terraform.modularised-demo" : {
       description : "An example Terraform setup using modularised components to fulfill a use-case",
       topics : ["terraform", "aws", "iac", "demo"]
-      open_source : true
-    }
+      open_source : true,
+      visibility : "public"
+    },
+    "sudoblark.terraform.module.aws.s3_files" : {
+      description : "Terraform module to upload N number of (optionally templated) local files to S3 with distinct keys.",
+      topics : ["terraform", "aws", "iac", "module"],
+      open_source : true,
+      visibility : "public"
+    },
   }
 
   core_platform = {
@@ -60,10 +67,6 @@ locals {
     },
     "sudoblark.terraform.module.aws.lambda" : {
       description : "Terraform module to create N number of lambdas from ZIPs or URIs.",
-      topics : ["terraform", "aws", "iac", "module"]
-    },
-    "sudoblark.terraform.module.aws.s3_files" : {
-      description : "Terraform module to upload N number of (optionally templated) local files to S3 with distinct keys.",
       topics : ["terraform", "aws", "iac", "module"]
     },
     "sudoblark.terraform.module.aws.security_group" : {
