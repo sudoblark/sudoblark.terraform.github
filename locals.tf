@@ -76,7 +76,8 @@ locals {
     },
     "sudoblark.terraform.module.aws.sns" : {
       description : "Terraform module to create N number of SNS topics with appropriate subscriptions.",
-      topics : ["terraform", "aws", "iac", "module"]
+      topics : ["terraform", "aws", "iac", "module"],
+      visibility : "public"
     },
     "sudoblark.terraform.module.aws.state_machine" : {
       description : "Terraform module to create N number of state machines with custom IAM policies..",
