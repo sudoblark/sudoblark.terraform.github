@@ -38,6 +38,7 @@ locals {
       description : "Lambda container for the monsternames-api RESTAPI backend.",
       topics : ["aws", "python", "docker"],
       open_source : true,
+      visibility = "public"
     }
   }
 
