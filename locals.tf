@@ -25,6 +25,10 @@ locals {
       description : "Terraform setup for Sudoblark AWS",
       topics : ["terraform", "aws", "iac"]
     },
+    "sudoblark.terraform.ado-monitoring" : {
+      description : "Terraform, and application code, showcasing an event-driven architecture for monitoring of Azure DevOps Pipelines.",
+      topics : ["terraform", "aws", "aws", "python"]
+    }
   }
 
   monsternames = {
