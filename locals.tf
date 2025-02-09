@@ -25,8 +25,8 @@ locals {
       description : "Terraform setup for Sudoblark AWS",
       topics : ["terraform", "aws", "iac"]
     },
-    "sudoblark.terraform.ado-monitoring" : {
-      description : "Terraform, and application code, showcasing an event-driven architecture for monitoring of Azure DevOps Pipelines.",
+    "sudoblark.terraform.ci-cd-observability-monitoring" : {
+      description : "Terraform, and application code, showcasing an event-driven architecture for monitoring of: GitLab, GitHub, Azure DevOps, CircleCI.",
       topics : ["terraform", "aws", "aws", "python"]
     }
   }
