@@ -30,8 +30,8 @@ locals {
       topics : ["terraform", "aws", "iac", "python"]
     },
     ".github" : {
-      description : "Magic GitHub repo for Sudoblark, containing reusable workflows, templates for issues, the organisational README etc.",
-      topics : ["github", "github-actions"]
+      description : "Magic GitHub repo for Sudoblark, containing templates for issues, the organisational README etc.",
+      topics : ["github"]
       visibility : "public"
       open_source : true
     },
@@ -44,6 +44,18 @@ locals {
     "sudoblark.azure-devops.workflows" : {
       description : "Template library of re-usable, end-to-end, workflows for Azure DevOps Pipelines.",
       topics : ["yaml", "azure-devops-pipelines"]
+      visibility : "public"
+      open_source : true
+    },
+    "sudoblark.github-actions.library" : {
+      description : "Template library of re-usable components for usage in GitHub Actions.",
+      topics : ["yaml", "github-actions", "library"]
+      visibility : "public"
+      open_source : true
+    },
+    "sudoblark.github-actions.workflows" : {
+      description : "Template library of re-usable, end-to-end, workflows for GitHub Actions.",
+      topics : ["yaml", "github-actions", "workflows"]
       visibility : "public"
       open_source : true
     },
