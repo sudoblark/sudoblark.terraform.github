@@ -115,6 +115,11 @@ locals {
       visibility : "public"
       open_source : true
     },
+    "sudoblark.terraform.module.aws.dynamo_db" : {
+      description : "Terraform module create N number of DynamoDB tables",
+      topics : ["terraform", "aws", "iac", "module"],
+      open_source : true
+    },
   }
 
 
