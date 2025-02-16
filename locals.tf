@@ -27,9 +27,28 @@ locals {
     },
     "sudoblark.terraform.ci-cd-observability-monitoring" : {
       description : "Terraform, and application code, showcasing an event-driven architecture for monitoring of: GitLab, GitHub, Azure DevOps, CircleCI.",
-      topics : ["terraform", "aws", "aws", "python"]
-    }
+      topics : ["terraform", "aws", "iac", "python"]
+    },
+    ".github" : {
+      description : "Magic GitHub repo for Sudoblark, containing reusable workflows, templates for issues, the organisational README etc.",
+      topics : ["github", "github-actions"]
+      visibility : "public"
+      open_source : true
+    },
+    "sudoblark.azure-devops.library" : {
+      description : "Template library of re-usable components for usage in Azure DevOps Pipelines.",
+      topics : ["yaml", "azure-devops-pipelines", "library"]
+      visibility : "public"
+      open_source : true
+    },
+    "sudoblark.azure-devops.workflows" : {
+      description : "Template library of re-usable, end-to-end, workflows for Azure DevOps Pipelines.",
+      topics : ["yaml", "azure-devops-pipelines"]
+      visibility : "public"
+      open_source : true
+    },
   }
+
 
   monsternames = {
     "sudoblark.monsternames.open-api" : {
