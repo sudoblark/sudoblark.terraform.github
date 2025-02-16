@@ -31,7 +31,7 @@ locals {
     },
     ".github" : {
       description : "Magic GitHub repo for Sudoblark, containing reusable workflows, templates for issues, the organisational README etc.",
-      topics : ["github", "github actions"]
+      topics : ["github", "github-actions"]
       visibility : "public"
       open_source : true
     },
