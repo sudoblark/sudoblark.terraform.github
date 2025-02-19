@@ -6,12 +6,44 @@ locals {
       open_source : true,
       visibility : "public"
     },
-    "sudoblark.terraform.module.aws.s3_files" : {
-      description : "Terraform module to upload N number of (optionally templated) local files to S3 with distinct keys.",
-      topics : ["terraform", "aws", "iac", "module"],
-      open_source : true,
-      visibility : "public"
+  }
+
+  ci_cd = {
+    "sudoblark.terraform.ci-cd-observability-monitoring" : {
+      description : "Terraform, and application code, showcasing an event-driven architecture for monitoring of: GitLab, GitHub, Azure DevOps, CircleCI.",
+      topics : ["terraform", "aws", "iac", "python"]
+      visibility : "private"
     },
+    "sudoblark.azure-devops.library" : {
+      description : "Template library of re-usable components for usage in Azure DevOps Pipelines.",
+      topics : ["yaml", "azure-devops-pipelines", "library"]
+      visibility : "private"
+      open_source : true
+    },
+    "sudoblark.azure-devops.workflows" : {
+      description : "Template library of re-usable, end-to-end, workflows for Azure DevOps Pipelines.",
+      topics : ["yaml", "azure-devops-pipelines"]
+      visibility : "private"
+      open_source : true
+    },
+    "sudoblark.github-actions.library" : {
+      description : "Template library of re-usable components for usage in GitHub Actions.",
+      topics : ["yaml", "github-actions", "library"]
+      visibility : "public"
+      open_source : true
+    },
+    "sudoblark.github-actions.workflows" : {
+      description : "Template library of re-usable, end-to-end, workflows for GitHub Actions.",
+      topics : ["yaml", "github-actions", "workflows"]
+      visibility : "private"
+      open_source : true
+    },
+    "sudoblark.python.ci-cli" : {
+      description : "CLI application intended to be used in CI/CD operations within Sudoblark."
+      topics : ["python", "cli"]
+      open_source : true
+      visibility : "private"
+    }
   }
 
   core_platform = {
@@ -25,51 +57,12 @@ locals {
       description : "Terraform setup for Sudoblark AWS",
       topics : ["terraform", "aws", "iac"]
     },
-    "sudoblark.terraform.ci-cd-observability-monitoring" : {
-      description : "Terraform, and application code, showcasing an event-driven architecture for monitoring of: GitLab, GitHub, Azure DevOps, CircleCI.",
-      topics : ["terraform", "aws", "iac", "python"]
-    },
     ".github" : {
       description : "Magic GitHub repo for Sudoblark, containing templates for issues, the organisational README etc.",
       topics : ["github"]
       visibility : "public"
       open_source : true
     },
-    "sudoblark.azure-devops.library" : {
-      description : "Template library of re-usable components for usage in Azure DevOps Pipelines.",
-      topics : ["yaml", "azure-devops-pipelines", "library"]
-      visibility : "public"
-      open_source : true
-    },
-    "sudoblark.azure-devops.workflows" : {
-      description : "Template library of re-usable, end-to-end, workflows for Azure DevOps Pipelines.",
-      topics : ["yaml", "azure-devops-pipelines"]
-      visibility : "public"
-      open_source : true
-    },
-    "sudoblark.github-actions.library" : {
-      description : "Template library of re-usable components for usage in GitHub Actions.",
-      topics : ["yaml", "github-actions", "library"]
-      visibility : "public"
-      open_source : true
-    },
-    "sudoblark.github-actions.workflows" : {
-      description : "Template library of re-usable, end-to-end, workflows for GitHub Actions.",
-      topics : ["yaml", "github-actions", "workflows"]
-      visibility : "public"
-      open_source : true
-    },
-    "sudoblark.python.core" : {
-      description : "Core Python library for Sudoblark."
-      topics : ["python", "library"]
-      open_source : true
-    },
-    "sudoblark.python.ci-cli" : {
-      description : "CLI application intended to be used in CI/CD operations within Sudoblark."
-      topics : ["python", "cli"]
-      open_source : true
-    }
-
   }
 
 
@@ -78,10 +71,10 @@ locals {
       description : "OpenAPI definition for the monsternames RESTAPI",
       topics : ["open-api"],
       open_source : true,
-      visibility = "public"
+      visibility = "private"
     },
     "sudoblark.monsternames.api" : {
-      description : "Lambda container for the monsternames-api RESTAPI backend.",
+      description : "Open-source RESTAPI realised via data-structure and algorithm driven Terraform principles.",
       topics : ["aws", "python", "docker"],
       open_source : true,
       visibility = "public"
@@ -93,10 +86,24 @@ locals {
       description : "A CLI application created to manage BitBucket resources.",
       topics : ["python", "bitbucket", "cli"],
       open_source : true,
+      visibility : "private"
+    },
+    "sudoblark.python.core" : {
+      description : "Core Python library for Sudoblark."
+      topics : ["python", "library"]
+      open_source : true
+      visibility : "private"
     },
   }
 
   terraform_modules = {
+    "sudoblark.terraform.module.aws.s3_files" : {
+      description : "Terraform module to upload N number of (optionally templated) local files to S3 with distinct keys.",
+      topics : ["terraform", "aws", "iac", "module"],
+      open_source : true,
+      visibility : "public"
+    },
+
     "sudoblark.terraform.module.aws.api_gateway" : {
       description : "Terraform module to create N number of API Gateways, usage plans and usage keys.",
       topics : ["terraform", "aws", "iac"],
@@ -161,6 +168,7 @@ locals {
       description : "Terraform module create N number of DynamoDB tables",
       topics : ["terraform", "aws", "iac", "module"],
       open_source : true
+      visibility : "private"
     },
   }
 
@@ -170,6 +178,7 @@ locals {
     local.terraform_modules,
     local.monsternames,
     local.python,
-    local.demo_repositories
+    local.demo_repositories,
+    local.ci_cd
   )
 }
