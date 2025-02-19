@@ -59,6 +59,17 @@ locals {
       visibility : "public"
       open_source : true
     },
+    "sudoblark.python.core" : {
+      description : "Core Python library for Sudoblark."
+      topics : ["python", "library"]
+      open_source : true
+    },
+    "sudoblark.python.ci-cli" : {
+      description : "CLI application intended to be used in CI/CD operations within Sudoblark."
+      topics : ["python", "cli"]
+      open_source : true
+    }
+
   }
 
 
