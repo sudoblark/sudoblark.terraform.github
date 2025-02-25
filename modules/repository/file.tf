@@ -59,6 +59,13 @@ resource "github_repository_file" "gitignore" {
   content             = file("${path.module}/template_files/.gitignore")
   commit_message      = ".gitignore - managed by sudoblark.terraform.github"
   overwrite_on_create = true
+
+  lifecycle {
+    ignore_changes = [
+      # We only want to bootstrap the file, not manage it wholesale
+      content
+    ]
+  }
 }
 
 resource "github_repository_file" "precommit" {
@@ -76,6 +83,13 @@ ${file("${path.module}/template_files/terraform_pre_commit.yaml")}
   EOT
   commit_message      = ".pre-commit-config.yaml - managed by sudoblark.terraform.github"
   overwrite_on_create = true
+
+  lifecycle {
+    ignore_changes = [
+      # We only want to bootstrap the file, not manage it wholesale
+      content
+    ]
+  }
 }
 
 resource "github_repository_file" "commit-to-pr" {
