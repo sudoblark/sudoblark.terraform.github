@@ -92,7 +92,7 @@ locals {
       description : "Core Python library for Sudoblark."
       topics : ["python", "library"]
       open_source : true
-      visibility : "private"
+      visibility : "public"
     },
   }
 
