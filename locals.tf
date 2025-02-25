@@ -88,6 +88,12 @@ locals {
       open_source : true,
       visibility : "private"
     },
+    "sudoblark.python.github-cli" : {
+      description : "A CLI application created to interact with GitHub",
+      topics : ["python", "github", "cli"],
+      open_source : true,
+      visibility : "private"
+    },
     "sudoblark.python.core" : {
       description : "Core Python library for Sudoblark."
       topics : ["python", "library"]
