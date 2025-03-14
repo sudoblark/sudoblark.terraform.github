@@ -98,7 +98,7 @@ locals {
       description : "A CLI application created to interact with GitHub",
       topics : ["python", "github", "cli"],
       open_source : true,
-      visibility : "private"
+      visibility : "public"
     },
     "sudoblark.python.core" : {
       description : "Core Python library for Sudoblark."
