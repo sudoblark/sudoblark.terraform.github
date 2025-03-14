@@ -32,6 +32,12 @@ locals {
       visibility : "public"
       open_source : true
     },
+    "sudoblark.github-actions.agent" : {
+      description : "An example custom CI/CD agent for GitHub Actions, complete with localised kubernetes deployment.",
+      topics : ["github-actions", "docker", "kubernetes"]
+      visibility : "private"
+      open_source : true
+    },
     "sudoblark.github-actions.workflows" : {
       description : "Template library of re-usable, end-to-end, workflows for GitHub Actions.",
       topics : ["yaml", "github-actions", "workflows"]
