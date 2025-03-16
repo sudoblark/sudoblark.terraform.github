@@ -69,6 +69,11 @@ locals {
       visibility : "public"
       open_source : true
     },
+    "sudoblark.com" : {
+      description : "GitHub Pages repository for sudoblark.com website"
+      visibility : "private"
+      topics : ["github", "website"]
+    }
   }
 
 
