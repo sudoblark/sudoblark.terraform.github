@@ -14,6 +14,13 @@
 
 
 # sudoblark.terraform.github
+[![CI](https://github.com/sudoblark/sudoblark.terraform.github/actions/workflows/commit-to-pr.yaml/badge.svg)](https://github.com/sudoblark/sudoblark.terraform.github/actions/workflows/commit-to-pr.yaml)
+[![CD](https://github.com/sudoblark/sudoblark.terraform.github/actions/workflows/apply.yaml/badge.svg)](https://github.com/sudoblark/sudoblark.terraform.github/actions/workflows/apply.yaml)
+[![Terraform Version](https://img.shields.io/badge/Terraform-1.7%2B-blueviolet?logo=terraform)](https://developer.hashicorp.com/terraform/)
+[![License](https://img.shields.io/github/license/sudoblark/sudoblark.terraform.github)](https://github.com/sudoblark/sudoblark.terraform.github/blob/main/LICENSE.txt)
+[![Maintained](https://img.shields.io/maintenance/yes/2025)](https://github.com/sudoblark/sudoblark.terraform.github)
+[![Automation Scope](https://img.shields.io/badge/Scope-GitHub%2FOrg%20Management-blue)](https://github.com/sudoblark/sudoblark.terraform.github)
+
 Terraform setup for Sudoblark GitHub - repo managed by sudoblark.terraform.github.
 
 Managed GitHub with GitHub!
