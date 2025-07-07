@@ -6,6 +6,12 @@ locals {
       open_source : true,
       visibility : "public"
     },
+    "sudoblark.ai-ml.demos" : {
+      description : "A collection of AI/ML demos, showcasing various use-cases and technologies.",
+      topics : ["ai", "ml", "demo"],
+      open_source : true,
+      visibility : "private"
+    },
   }
 
   ci_cd = {
