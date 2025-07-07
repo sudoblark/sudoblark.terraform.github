@@ -22,7 +22,7 @@ jobs:
       matrix:
         folder: ["./"]
     name: Terraform validate for ${{ matrix.folder }}
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         env:
@@ -43,7 +43,7 @@ jobs:
       matrix:
         folder: ["./"]
     name: Terraform lint for ${{ matrix.folder }}
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         env:
@@ -61,7 +61,7 @@ jobs:
       matrix:
         folder: ["./"]
     name: Terraform plan for ${{ matrix.folder }}
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     needs: [validation, linting]
     steps:
       - uses: actions/checkout@v3

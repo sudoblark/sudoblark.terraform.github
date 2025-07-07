@@ -6,6 +6,12 @@ locals {
       open_source : true,
       visibility : "public"
     },
+    "sudoblark.ai-ml.demos" : {
+      description : "A collection of AI/ML demos, showcasing various use-cases and technologies.",
+      topics : ["ai", "ml", "demo"],
+      open_source : true,
+      visibility : "private"
+    },
   }
 
   ci_cd = {
@@ -189,36 +195,12 @@ locals {
     },
   }
 
-
-  training_content = {
-    "sudoblark.training.git" : {
-      description : "Repo to contain content for facilitator-run workshops regarding Git."
-      topics : ["training"]
-      visibility : "private"
-      open_source : false
-
-    },
-    "sudoblark.training.ci-cd" : {
-      description : "Repo to contain content for facilitator-run workshops regarding CI/CD."
-      topics : ["training"]
-      visibility : "private"
-      open_source : false
-    },
-    "sudoblark.training.iac-with-azure" : {
-      description : "Repo to contain content for facilitator-run workshops regarding IaC, using Azure resources for examples."
-      topics : ["training"]
-      visibility : "private"
-      open_source : false
-    }
-  }
-
   repositories = merge(
     local.core_platform,
     local.terraform_modules,
     local.monsternames,
     local.python,
     local.demo_repositories,
-    local.ci_cd,
-    local.training_content
+    local.ci_cd
   )
 }
