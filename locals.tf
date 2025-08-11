@@ -117,6 +117,12 @@ locals {
       open_source : true
       visibility : "public"
     },
+    "sudoblark.python.scripts" : {
+      description : "A collection of Python scripts for various tasks.",
+      topics : ["python", "scripts"],
+      open_source : false,
+      visibility : "private"
+    },
   }
 
   terraform_modules = {
