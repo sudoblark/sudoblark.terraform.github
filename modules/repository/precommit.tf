@@ -6,14 +6,14 @@ locals {
 resource "github_repository_file" "precommit" {
   repository = github_repository.repository.name
   branch     = data.github_branch.main.branch
-  file       = ".github/workflows/commit_to_pull_request.yaml"
+  file       = ".pre-commit-config.yaml"
   content = templatefile("${path.module}/template_files/precommit/precommit.tftpl", {
     TERRAFORM_REPO               = local.is_terraform_repo
     TERRAFORM_MODULE             = local.is_terraform_module_repo
     TERRAFORM_PRE_COMMIT_CONTENT = local.terraform_pre_commit_content
 
   })
-  commit_message      = format(".github/workflows/commit_to_pull_request.yaml- managed by sudoblark.terraform.github")
+  commit_message      = format("pre-commit-config.yaml - managed by sudoblark.terraform.github")
   overwrite_on_create = true
 
   depends_on = [

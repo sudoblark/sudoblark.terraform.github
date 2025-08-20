@@ -7,7 +7,7 @@ resource "github_repository_file" "pull_request_template" {
     PYTHON_REPO    = local.is_python_repo
     TERRAFORM_REPO = local.is_terraform_repo
   })
-  commit_message      = format(".github/pull_request_template.md- managed by sudoblark.terraform.github")
+  commit_message      = format(".github/pull_request_template.md - managed by sudoblark.terraform.github")
   overwrite_on_create = true
 
   depends_on = [
