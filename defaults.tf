@@ -12,4 +12,14 @@ locals {
 
   # By default, repositories obviously aren't archived
   archived = false
+
+  # Default codeowner entries applied before unique repository codeowners entries
+  codeowners_entries = [
+    {
+      pattern = "*"
+      owners = [
+        "@benjaminlukeclark"
+      ]
+    }
+  ]
 }

@@ -1,6 +1,0 @@
-- [] Code coverage has not been reduced below 95% by my changes
-- [] I have written new unit and integration tests to cover added functionality
-- [] Said unit and integration tests have passed
-- [] Existing tests pass locally with my changes
-- [] My code does not produce any flake8 lint warnings
-- [] My code does not introduce new bandit warnings

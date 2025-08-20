@@ -10,15 +10,15 @@ locals {
 }
 
 module "repositories" {
-  for_each    = { for repository in local.repositories : format("%s%s", try(repository.append_prefix, local.append_prefix) ? local.repository_prefix : "", repository.name) => repository }
-  source      = "./modules/repository"
-  name        = format("%s%s", try(each.value.append_prefix, local.append_prefix) ? local.repository_prefix : "", each.value.name)
-  description = each.value.description
-  topics      = try(each.value.topics, [])
-  visibility  = try(each.value.visibility, local.visibility)
-  archived    = try(each.value.archived, local.archived)
-  codeowners  = try(each.value.codeowners, null)
-  open_source = try(each.value.open_source, local.open_source)
+  for_each           = { for repository in local.repositories : format("%s%s", try(repository.append_prefix, local.append_prefix) ? local.repository_prefix : "", repository.name) => repository }
+  source             = "./modules/repository"
+  name               = format("%s%s", try(each.value.append_prefix, local.append_prefix) ? local.repository_prefix : "", each.value.name)
+  description        = each.value.description
+  topics             = try(each.value.topics, [])
+  visibility         = try(each.value.visibility, local.visibility)
+  archived           = try(each.value.archived, local.archived)
+  codeowners_entries = concat(try(each.value.codeowners_entries, []), local.codeowners_entries)
+  open_source        = try(each.value.open_source, local.open_source)
   providers = {
     github = github
   }

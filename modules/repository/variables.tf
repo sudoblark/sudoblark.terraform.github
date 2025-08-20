@@ -39,8 +39,10 @@ variable "open_source" {
   default     = false
 }
 
-variable "codeowners" {
-  description = "Additional codeowners for the repository"
-  type        = list(string)
-  default     = null
+variable "codeowners_entries" {
+  description = "A list of entries for the codeowners files."
+  type = list(object({
+    pattern = string,
+    owners  = list(string)
+  }))
 }
