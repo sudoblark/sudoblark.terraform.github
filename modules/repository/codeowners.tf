@@ -7,6 +7,7 @@ locals {
   ])
 }
 
+# github_repository_file resources are created sequentially to preserve linear commit history
 resource "github_repository_file" "codeowners" {
   repository = github_repository.repository.name
   branch     = data.github_branch.main.branch
@@ -19,6 +20,5 @@ resource "github_repository_file" "codeowners" {
 
   depends_on = [
     data.github_branch.main,
-    # Done to preserve linear commit history
   ]
 }
