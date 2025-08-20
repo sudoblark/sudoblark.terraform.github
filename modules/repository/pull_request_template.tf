@@ -1,8 +1,3 @@
-locals {
-  is_python_repo    = can(regex("python", github_repository.repository.name))
-  is_terraform_repo = can(regex("terraform", github_repository.repository.name))
-}
-
 # github_repository_file resources are created sequentially to preserve linear commit history
 resource "github_repository_file" "pull_request_template" {
   repository = github_repository.repository.name
