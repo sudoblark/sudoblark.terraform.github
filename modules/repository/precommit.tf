@@ -13,7 +13,7 @@ resource "github_repository_file" "precommit" {
     TERRAFORM_PRE_COMMIT_CONTENT = local.terraform_pre_commit_content
 
   })
-  commit_message      = format("pre-commit-config.yaml - managed by sudoblark.terraform.github")
+  commit_message      = format("pre-commit-config.yaml - initial creation by sudoblark.terraform.github")
   overwrite_on_create = true
 
   depends_on = [

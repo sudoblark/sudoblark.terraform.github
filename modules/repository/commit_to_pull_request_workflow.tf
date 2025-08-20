@@ -11,7 +11,7 @@ resource "github_repository_file" "commit_to_pull_request_workflow" {
     TERRAFORM_REPO                  = local.is_terraform_repo
     TERRAFORM_PULL_REQUEST_WORKFLOW = local.terraform_pull_request_workflow
   })
-  commit_message      = format(".github/workflows/commit_to_pull_request.yaml - managed by sudoblark.terraform.github")
+  commit_message      = format(".github/workflows/commit_to_pull_request.yaml - initial creation by sudoblark.terraform.github")
   overwrite_on_create = true
 
   depends_on = [

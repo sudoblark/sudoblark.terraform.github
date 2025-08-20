@@ -4,7 +4,7 @@ resource "github_repository_file" "gitignore" {
   branch              = data.github_branch.main.branch
   file                = ".gitignore"
   content             = templatefile("${path.module}/template_files/.gitignore", {})
-  commit_message      = format(".gitignore- managed by sudoblark.terraform.github")
+  commit_message      = format(".gitignore - initial creation by sudoblark.terraform.github")
   overwrite_on_create = true
 
   depends_on = [
