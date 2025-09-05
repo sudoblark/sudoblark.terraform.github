@@ -13,7 +13,7 @@ resource "github_repository_file" "readme" {
     TERRAFORM_MODULE         = local.is_terraform_module_repo
     TERRAFORM_MODULE_CONTENT = local.terraform_module_readme_content
   })
-  commit_message      = format("README.md - initial creation bysudoblark.terraform.github")
+  commit_message      = format("README.md - initial creation by sudoblark.terraform.github")
   overwrite_on_create = true
 
   depends_on = [
