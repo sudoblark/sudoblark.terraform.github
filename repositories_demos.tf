@@ -13,6 +13,13 @@ locals {
       topics : ["ai", "ml", "demo"],
       open_source : true,
       visibility : "private"
+    },
+    {
+      name : "patterns.repository-enterprise",
+      description : "A simple Typer application to demonstrate how the Repository Enterprise pattern may be utilised to dynamically persist to different backend databases",
+      topcs : ["python", "demo", "cli"],
+      open_source : true,
+      visibility : "private"
     }
   ]
 }
