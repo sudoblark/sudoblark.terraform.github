@@ -24,3 +24,16 @@ Please describe the tests that you ran to verify your changes. Provide instructi
 
 - [] My code follows the style guidelines of this project
 - [] I have made corresponding changes to the documentation
+%{ if PYTHON_REPO == true }
+- [] Code coverage has not been reduced below 95% by my changes
+- [] I have written new unit and integration tests to cover added functionality
+- [] Said unit and integration tests have passed
+- [] Existing tests pass locally with my changes
+- [] My code does not produce any flake8 lint warnings
+- [] My code does not introduce new bandit warnings
+%{ endif }
+%{ if TERRAFORM_REPO == true }
+- [] Terraform validate works locally
+- [] Terraform plan passes in the pipeline with an expected result
+- [] Terraform plan does not show any unsuspected terraform destroy operations
+%{ endif }
