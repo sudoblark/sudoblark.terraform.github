@@ -17,9 +17,16 @@ locals {
     {
       name : "patterns.repository-enterprise",
       description : "A simple Typer application to demonstrate how the Repository Enterprise pattern may be utilised to dynamically persist to different backend databases",
-      topcs : ["python", "demo", "cli"],
+      topics : ["python", "demo", "cli"],
       open_source : true,
       visibility : "public"
+    },
+    {
+      name : "ai.bookshelf-demo"
+      description : "Local AI demo: extract book data from images"
+      topics : ["copilot", "ai-demo", "computer-vision", "parquet", "flutter"]
+      open_source : true
+      visibility : "private"
     }
   ]
 }
