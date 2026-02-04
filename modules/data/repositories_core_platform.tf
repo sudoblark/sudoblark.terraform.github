@@ -2,10 +2,16 @@ locals {
   repositories_core_platform = [
     {
       name : "terraform.github"
-      description : "Terraform setup for Sudoblark GitHub",
+      description : "Terraform configuration for managing GitHub repositories and configuration"
       topics : ["terraform", "github", "iac"],
       visibility : "public"
       open_source : true
+    },
+    {
+      "name" : "terraform.github.organisation",
+      "description" : "Terraform module to manage GitHub organisations, including teams, members and organisation-wide settings.",
+      "topics" : ["terraform", "github", "iac", "module"],
+      "open_source" : true
     },
     {
       name : "terraform.aws"
