@@ -13,6 +13,7 @@ env:
   REPO_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   # Explicitly provided token in ORG to access entire organisation
   ORG_GITHUB_TOKEN: ${{ secrets.SUDOBLARK_GITHUB_TOKEN }}
+  INFRACOST_API_KEY: ${{ secrets.INFRACOST_API_KEY }}
 
 permissions:
   contents: read
@@ -116,3 +117,43 @@ jobs:
           GITHUB_TOKEN: ${{ env.ORG_GITHUB_TOKEN }}
         with:
           path: ./
+
+  infracost:
+    name: Infracost Cost Estimate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Infracost
+        uses: infracost/actions/setup@v3
+        with:
+          api-key: ${{ env.INFRACOST_API_KEY }}
+
+      - name: Checkout base branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.ref }}
+
+      - name: Generate Infracost cost estimate baseline
+        run: |
+          infracost breakdown --path=. \
+                              --format=json \
+                              --out-file=/tmp/infracost-base.json
+
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: refs/pull/${{ github.event.pull_request.number }}/merge
+
+      - name: Generate Infracost diff
+        run: |
+          infracost diff --path=. \
+                          --format=json \
+                          --compare-to=/tmp/infracost-base.json \
+                          --out-file=/tmp/infracost.json
+
+      - name: Post Infracost comment
+        run: |
+          infracost comment github --path=/tmp/infracost.json \
+                                   --repo=$GITHUB_REPOSITORY \
+                                   --github-token=${{ env.REPO_GITHUB_TOKEN }} \
+                                   --pull-request=${{ github.event.pull_request.number }} \
+                                   --behavior=update
