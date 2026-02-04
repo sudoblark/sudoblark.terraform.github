@@ -1,7 +1,0 @@
-%{ if TERRAFORM_REPO }
-${TERRAFORM_PRE_COMMIT_CONTENT}
-%{ endif }
-%{ if TERRAFORM_MODULE == true }
-        exclude: "examples/"
-      - id: terraform_docs
-%{ endif }
