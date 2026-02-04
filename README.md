@@ -16,7 +16,7 @@
 # sudoblark.terraform.github
 [![CI](https://github.com/sudoblark/sudoblark.terraform.github/actions/workflows/commit-to-pr.yaml/badge.svg)](https://github.com/sudoblark/sudoblark.terraform.github/actions/workflows/commit-to-pr.yaml)
 [![CD](https://github.com/sudoblark/sudoblark.terraform.github/actions/workflows/apply.yaml/badge.svg)](https://github.com/sudoblark/sudoblark.terraform.github/actions/workflows/apply.yaml)
-[![Terraform Version](https://img.shields.io/badge/Terraform-1.2%2B-blueviolet?logo=terraform)](https://developer.hashicorp.com/terraform/)
+[![Terraform Version](https://img.shields.io/badge/Terraform-1.14%2B-blueviolet?logo=terraform)](https://developer.hashicorp.com/terraform/)
 [![License](https://img.shields.io/github/license/sudoblark/sudoblark.terraform.github)](https://github.com/sudoblark/sudoblark.terraform.github/blob/main/LICENSE.txt)
 [![Maintained](https://img.shields.io/maintenance/yes/2026)](https://github.com/sudoblark/sudoblark.terraform.github)
 [![Automation Scope](https://img.shields.io/badge/Scope-GitHub%2FOrg%20Management-blue)](https://github.com/sudoblark/sudoblark.terraform.github)
@@ -113,19 +113,32 @@ This repository uses GitHub Actions for quality checks on pull requests:
 
 - **Format Check** - Validates Terraform formatting
 - **Validate** - Runs `terraform validate`
-- **Checkov** - Security and best practices scanning
+- **Checkov** - Security and best practices scanning with policy enforcement
 - **Test** - Executes Terraform tests (requires Terraform 1.6.0+)
 - **Plan** - Generates and displays terraform plan
+- **Infracost** - Cost estimation for infrastructure changes
 
 All checks must pass before merging to main.
 
 ### Testing
 
-<!-- TODO: Add terraform test examples once tests are implemented -->
-Terraform tests will be added using `.tftest.hcl` files to validate:
-- Repository creation
-- Branch protection rules
-- CODEOWNERS file generation
-- License management
+Terraform tests are implemented using `.tftest.hcl` files to validate:
 
-Tests require Terraform 1.6.0 or higher.
+#### Test Files
+- **`tests/data_module.tftest.hcl`** - Validates data module configuration structure and outputs
+- **`tests/integration.tftest.hcl`** - Tests resource creation and configuration merging
+- **`tests/repository_name_logic.tftest.hcl`** - Validates repository naming and prefix logic
+
+#### Test Categories
+- Configuration validation (required fields, data types, naming conventions)
+- Resource creation and instantiation
+- Name computation and prefix application
+- Default value merging
+- Uniqueness constraints
+
+Run tests locally with:
+```sh
+terraform test
+```
+
+Tests require Terraform 1.14.0 or higher.
