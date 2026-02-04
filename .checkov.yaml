@@ -1,0 +1,17 @@
+# Checkov configuration for sudoblark.terraform.github
+# Documentation: https://www.checkov.io/2.Basics/Suppressing%20and%20Skipping%20Policies.html
+
+# Skip specific checks that don't apply to this GitHub repository management project
+skip-check:
+  # GitHub repository security checks that may not apply
+  - CKV_GIT_1  # Ensure GitHub repository is Private - we manage both public and private repos
+  - CKV_GIT_5  # Ensure GitHub branch protection rules are in place - we configure this selectively
+  - CKV_GIT_6  # Ensure GitHub branch protection requires signed commits
+
+# Framework to scan
+framework:
+  - terraform
+
+# Output format
+output:
+  - cli
