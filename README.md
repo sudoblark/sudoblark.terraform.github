@@ -16,26 +16,61 @@
 # sudoblark.terraform.github
 [![CI](https://github.com/sudoblark/sudoblark.terraform.github/actions/workflows/commit-to-pr.yaml/badge.svg)](https://github.com/sudoblark/sudoblark.terraform.github/actions/workflows/commit-to-pr.yaml)
 [![CD](https://github.com/sudoblark/sudoblark.terraform.github/actions/workflows/apply.yaml/badge.svg)](https://github.com/sudoblark/sudoblark.terraform.github/actions/workflows/apply.yaml)
-[![Terraform Version](https://img.shields.io/badge/Terraform-1.7%2B-blueviolet?logo=terraform)](https://developer.hashicorp.com/terraform/)
+[![Terraform Version](https://img.shields.io/badge/Terraform-1.2%2B-blueviolet?logo=terraform)](https://developer.hashicorp.com/terraform/)
 [![License](https://img.shields.io/github/license/sudoblark/sudoblark.terraform.github)](https://github.com/sudoblark/sudoblark.terraform.github/blob/main/LICENSE.txt)
-[![Maintained](https://img.shields.io/maintenance/yes/2025)](https://github.com/sudoblark/sudoblark.terraform.github)
+[![Maintained](https://img.shields.io/maintenance/yes/2026)](https://github.com/sudoblark/sudoblark.terraform.github)
 [![Automation Scope](https://img.shields.io/badge/Scope-GitHub%2FOrg%20Management-blue)](https://github.com/sudoblark/sudoblark.terraform.github)
 
-Terraform setup for Sudoblark GitHub - repo managed by sudoblark.terraform.github.
+Terraform setup for Sudoblark GitHub - managing repository creation and configuration through Infrastructure as Code.
 
 Managed GitHub with GitHub!
 
-`modules` defines a `repository` module to create a new GitHub repo.
+## Architecture
 
-We instantiate this many times... `x.tf` files in the root of this repo split repositories by domains of interest,
-projects or other such logical separations. These are then combined in `locals.tf` into a single data
-structure which is then used to instantiate our module many times in `repositories.tf`.
+This repository follows a clean separation of concerns:
 
-In this manner, we may define repositories as dictionaries, combining them into a dictionary of dictionaries,
-in order to create as many repos as we like via complex data structures. Whilst still separating concerns
-via the individual project.tf files or higher-level dictionary keys.
+### Core Components
 
-It's counter may be considered to be [sudoblark.terraform.modularised-demo](https://github.com/sudoblark/sudoblark.terraform.modularised-demo) , which is an example micro-repo using modularised components to fulfill a use-case
+- **`modules/repository/`** - Core module implementing GitHub repository creation and configuration
+- **`modules/data/`** - Configuration layer where users define repositories and defaults (user-facing)
+- **Root** - Implementation layer that orchestrates the data module and core repository module
+
+### How It Works
+
+1. **Configuration** (`modules/data/` module):
+   - `modules/data/defaults.tf` - Default values for all repositories (prefix, visibility, codeowners, etc.)
+   - `modules/data/repositories_*.tf` - Repository definitions grouped by domain (ci_cd, python, terraform_modules, etc.)
+   - `modules/data/repositories.tf` - Combines all repository groups
+   - `modules/data/outputs.tf` - Exposes combined repositories and defaults
+
+2. **Implementation** (root):
+   - `repositories.tf` - Consumes data module outputs and creates repositories via the core module
+   - `main.tf` - Provider configuration
+
+3. **Core Module** (`modules/repository/`):
+   - Creates GitHub repositories
+   - Manages branch protection
+   - Configures CODEOWNERS files
+   - Handles licensing
+
+### Adding New Repositories
+
+To add a new repository, simply edit the appropriate file in `modules/data/`:
+
+```hcl
+# modules/data/repositories_python.tf
+{
+  name : "python.my-new-project"
+  description : "A new Python project"
+  topics : ["python", "cli"]
+  open_source : true
+  visibility : "public"
+}
+```
+
+All repositories inherit defaults from `modules/data/defaults.tf` unless explicitly overridden.
+
+It's conceptual counterpart may be considered to be [sudoblark.terraform.modularised-demo](https://github.com/sudoblark/sudoblark.terraform.modularised-demo), which is an example micro-repo using modularised components to fulfill a use-case.
 
 ## Developer documentation
 The below documentation is intended to assist a developer with interacting with the Terraform code in order to add,
@@ -55,6 +90,7 @@ python3 -m venv venv
 source venv/bin/activate
 pip install pre-commit
 ```
+
 ### Pre-commit hooks
 This repository utilises pre-commit in order to ensure a base level of quality on every commit. The hooks
 may be installed as follows:
@@ -65,3 +101,31 @@ pip install pre-commit
 pre-commit install
 pre-commit run --all-files
 ```
+
+#### Configured Hooks
+- **Terraform formatting** - Ensures consistent Terraform code style
+- **YAML linting** - Validates GitHub Actions workflows
+- **General file fixes** - Trailing whitespace, end-of-file fixes, merge conflict detection
+
+### Continuous Integration
+
+This repository uses GitHub Actions for quality checks on pull requests:
+
+- **Format Check** - Validates Terraform formatting
+- **Validate** - Runs `terraform validate`
+- **Checkov** - Security and best practices scanning
+- **Test** - Executes Terraform tests (requires Terraform 1.6.0+)
+- **Plan** - Generates and displays terraform plan
+
+All checks must pass before merging to main.
+
+### Testing
+
+<!-- TODO: Add terraform test examples once tests are implemented -->
+Terraform tests will be added using `.tftest.hcl` files to validate:
+- Repository creation
+- Branch protection rules
+- CODEOWNERS file generation
+- License management
+
+Tests require Terraform 1.6.0 or higher.
