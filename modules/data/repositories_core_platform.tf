@@ -19,6 +19,12 @@ locals {
       topics : ["terraform", "aws", "iac"]
     },
     {
+      name : "terraform.aws.identity-management",
+      description : "Terraform module to manage the Sudoblark AWS Organisation, inclusive of Identity Manager",
+      topics : ["terraform", "aws", "iac"]
+
+    },
+    {
       name : ".github"
       description : "Magic GitHub repo for Sudoblark, containing templates for issues, the organisational README etc.",
       topics : ["github"]
