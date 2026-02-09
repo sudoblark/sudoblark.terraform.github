@@ -14,15 +14,9 @@ locals {
       "open_source" : true
     },
     {
-      name : "terraform.aws"
-      description : "Terraform setup for Sudoblark AWS",
-      topics : ["terraform", "aws", "iac"]
-    },
-    {
       name : "terraform.aws.identity-management",
       description : "Terraform module to manage the Sudoblark AWS Organisation, inclusive of Identity Manager",
       topics : ["terraform", "aws", "iac"]
-
     },
     {
       name : ".github"

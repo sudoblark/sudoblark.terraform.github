@@ -5,7 +5,6 @@ locals {
     local.repositories_demo,
     local.repositories_monsternames,
     local.repositories_python,
-    local.repositories_terraform_modules,
     local.repositories_mobile
   )
 
