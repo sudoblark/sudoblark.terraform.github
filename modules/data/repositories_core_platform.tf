@@ -1,6 +1,13 @@
 locals {
   repositories_core_platform = [
     {
+      name : "dns"
+      description : "Terraform module to manage the Sudoblark internal DNS, including public and private hosted zones and records."
+      topics : ["terraform", "aws", "iac", "dns"]
+      visibility : "private"
+      open_source : false
+    },
+    {
       name : "terraform.github"
       description : "Terraform configuration for managing GitHub repositories and configuration"
       topics : ["terraform", "github", "iac"],
@@ -31,6 +38,13 @@ locals {
       description : "GitHub Pages repository for sudoblark.com website"
       visibility : "private"
       topics : ["github", "website"]
+    },
+    {
+      name : "documentation"
+      description : "Documentation repository for Sudoblark, containing all documentation related to the platform, including architecture decision records, design documents, and user guides."
+      topics : ["documentation", "adrs", "design-documents", "user-guides"]
+      visibility : "private"
+      open_source : false
     }
   ]
 }
