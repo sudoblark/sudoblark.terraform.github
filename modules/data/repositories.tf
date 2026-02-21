@@ -1,9 +1,11 @@
 locals {
   repositories = concat(
+    local.repositories_bookshelf,
     local.repositories_ci_cd,
     local.repositories_core_platform,
     local.repositories_demo,
     local.repositories_monsternames,
+    local.repositories_packages,
     local.repositories_python,
     local.repositories_mobile
   )
