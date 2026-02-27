@@ -7,7 +7,8 @@ locals {
     local.repositories_monsternames,
     local.repositories_packages,
     local.repositories_python,
-    local.repositories_mobile
+    local.repositories_mobile,
+    local.repositories_marketing
   )
 
   repositories_with_names = [
