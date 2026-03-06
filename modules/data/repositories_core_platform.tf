@@ -45,6 +45,13 @@ locals {
       topics : ["documentation", "adrs", "design-documents", "user-guides"]
       visibility : "private"
       open_source : false
+    },
+    {
+      name : "ai.standards"
+      description : "Repository for AI standards, guidelines, and best practices at Sudoblark."
+      topics : ["ai", "standards", "guidelines", "best-practices"]
+      visibility : "private"
+      open_source : false
     }
   ]
 }
