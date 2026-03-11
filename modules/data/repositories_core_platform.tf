@@ -52,6 +52,13 @@ locals {
       topics : ["ai", "standards", "guidelines", "best-practices"]
       visibility : "private"
       open_source : false
+    },
+    {
+      name : "ai.skills"
+      description : "Repository for AI operational skills and workflow automation at Sudoblark."
+      topics : ["ai", "skills", "automation", "workflows", "productivity"]
+      visibility : "private"
+      open_source : false
     }
   ]
 }
