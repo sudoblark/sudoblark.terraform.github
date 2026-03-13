@@ -5,19 +5,10 @@ on:
     branches:
       - main
 
-env:
-  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  AWS_DEFAULT_REGION: eu-west-2
-  # Automatically generated token unique to this repo per workflow execution
-  REPO_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  # Explicitly provided token in ORG to access entire organisation
-  ORG_GITHUB_TOKEN: ${{ secrets.SUDOBLARK_GITHUB_TOKEN }}
-  INFRACOST_API_KEY: ${{ secrets.INFRACOST_API_KEY }}
-
 permissions:
   contents: read
   pull-requests: write
+  id-token: write
 
 jobs:
   format_check:
@@ -33,7 +24,7 @@ jobs:
         uses: dflook/terraform-fmt-check@v2
         id: fmt-check
         env:
-          GITHUB_TOKEN: ${{ env.ORG_GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.SUDOBLARK_GITHUB_TOKEN }}
         with:
           path: ./
 
@@ -46,11 +37,17 @@ jobs:
         with:
           ref: refs/pull/${{ github.event.pull_request.number }}/merge
 
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::741139166799:role/service-accounts/aws-sudoblark-management-github-cicd-role
+          aws-region: eu-west-2
+
       - name: terraform validate
         uses: dflook/terraform-validate@v2
         id: validate
         env:
-          GITHUB_TOKEN: ${{ env.ORG_GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.SUDOBLARK_GITHUB_TOKEN }}
         with:
           path: ./
 
@@ -90,17 +87,23 @@ jobs:
         with:
           terraform_version: ${{ steps.terraform-version.outputs.version }}
 
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::741139166799:role/service-accounts/aws-sudoblark-management-github-cicd-role
+          aws-region: eu-west-2
+
       - name: Terraform Init
         run: terraform init
         working-directory: ./
         env:
-          GITHUB_TOKEN: ${{ env.ORG_GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.SUDOBLARK_GITHUB_TOKEN }}
 
       - name: Terraform Test
         run: terraform test
         working-directory: ./
         env:
-          GITHUB_TOKEN: ${{ env.ORG_GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.SUDOBLARK_GITHUB_TOKEN }}
 
   plan:
     name: Terraform Plan
@@ -111,10 +114,16 @@ jobs:
         with:
           ref: refs/pull/${{ github.event.pull_request.number }}/merge
 
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::741139166799:role/service-accounts/aws-sudoblark-management-github-cicd-role
+          aws-region: eu-west-2
+
       - name: terraform plan
         uses: dflook/terraform-plan@v2
         env:
-          GITHUB_TOKEN: ${{ env.ORG_GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.SUDOBLARK_GITHUB_TOKEN }}
         with:
           path: ./
 
@@ -125,12 +134,18 @@ jobs:
       - name: Setup Infracost
         uses: infracost/actions/setup@v3
         with:
-          api-key: ${{ env.INFRACOST_API_KEY }}
+          api-key: ${{ secrets.INFRACOST_API_KEY }}
 
       - name: Checkout base branch
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.base.ref }}
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::741139166799:role/service-accounts/aws-sudoblark-management-github-cicd-role
+          aws-region: eu-west-2
 
       - name: Generate Infracost cost estimate baseline
         run: |
@@ -154,6 +169,6 @@ jobs:
         run: |
           infracost comment github --path=/tmp/infracost.json \
                                    --repo=$GITHUB_REPOSITORY \
-                                   --github-token=${{ env.REPO_GITHUB_TOKEN }} \
+                                   --github-token=${{ secrets.GITHUB_TOKEN }} \
                                    --pull-request=${{ github.event.pull_request.number }} \
                                    --behavior=update
