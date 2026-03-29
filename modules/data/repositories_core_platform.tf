@@ -59,6 +59,13 @@ locals {
       topics : ["ai", "skills", "automation", "workflows", "productivity"]
       visibility : "private"
       open_source : false
+    },
+    {
+      name : "zeitgeist"
+      description : "A compiled list of research papers, documentation, and ways of working which may be utilised to inform agent and human decisions."
+      topics : ["ai", "research", "reference"]
+      visibility : "private"
+      open_source : false
     }
   ]
 }
