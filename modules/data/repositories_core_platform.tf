@@ -66,6 +66,13 @@ locals {
       topics : ["ai", "research", "reference"]
       visibility : "private"
       open_source : false
+    },
+    {
+      name : "ai.tasks"
+      description : "A dumping ground for AI assisted tasks, mainly created so I don't have to bother with managing SQS - though I may do that in the future."
+      topics : ["ai"]
+      visibility : "private"
+      open_source : false
     }
   ]
 }
